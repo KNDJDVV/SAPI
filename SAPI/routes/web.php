@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientesController;
 
 Route::get('/', function () {
     return view('welcome');
 
-    Route::get('/departamento',[DepartamentoController::class, 'index'])->name('departamento.index');
 });
+Route::get('/Clientes',[ClientesController::class, 'index'])->name('Clientes.index');
