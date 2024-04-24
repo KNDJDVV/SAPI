@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Clientes; 
 
 class ClientesController extends Controller
 {
@@ -11,8 +11,9 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = DB::table('clientes')->get(); // Obtener todos los clientes
+        $clientes = Clientes::all(); 
         return view('clientes.index', compact('clientes'));
+
     }
 
     /**
@@ -28,9 +29,16 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('clientes')->insert($request->all());
+        $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'telefono' => 'required',
+            'email' => 'required|email',
+            'tipo' => 'required',
+        ]);
 
-        
+        Clientes::create($request->all());
+
         return redirect()->route('clientes.index');
     }
 
@@ -47,26 +55,42 @@ class ClientesController extends Controller
      */
     public function edit(string $id)
     {
-        $cliente = DB::table('clientes')->find($id);
-        return view('clientes.edit', compact('cliente'));
+        $cliente = Clientes::findOrFail($id);
+
+    return view('clientes.edit', compact('cliente'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        DB::table('clientes')->where('id', $id)->update($request->all());
+{
+    $request->validate([
+        'nombre' => 'required',
+        'apellido' => 'required',
+        'telefono' => 'required',
+        'email' => 'required|email',
+        'tipo' => 'required',
+    ]);
 
-        return redirect()->route('clientes.index');
-    }
+    $cliente = Clientes::findOrFail($id);
+
+    $cliente->update($request->all());
+
+    return redirect()->route('clientes.index');
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        DB::table('clientes')->where('id', $id)->delete();
-        return redirect()->route('clientes.index');
-    }
+{
+    $cliente = Clientes::findOrFail($id);
+
+    $cliente->delete();
+
+    return redirect()->route('clientes.index');
+}
+
 }
