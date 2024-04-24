@@ -8,3 +8,5 @@ Route::get('/', function () {
 
 });
 Route::get('/Clientes',[ClientesController::class, 'index'])->name('Clientes.index');
+Route::post('/Clientes',[ClientesController::class, 'store'])->name('Clientes.store');
+Route::get('/Clientes/create', [ClientesController::class, 'create'])->name('Clientes.create');

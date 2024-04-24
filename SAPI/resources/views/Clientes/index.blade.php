@@ -8,10 +8,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Listado de Departamentos</title>
+    <title>Listado de Clientes</title>
   </head>
   <body>
-    <h1>Listado de Departamentos</h1>
+    <h1>Listado de Clientes</h1>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -27,15 +27,16 @@
   <body>
     <div class="container">
         <h1>Lista de Clientes</h1>
-      
+        <a href="{{ route('Clientes.create')}}" class= "btn btn-sucess">Add</a>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Codigo</th>
-                    <th scope="col">Clientes</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellidos</th>
+                    <th scope="col">Telefono</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -45,6 +46,7 @@
                     <th scope="row">{{$cliente->id}}</th>
                     <td>{{ $cliente->nombre }}</td>
                     <td>{{ $cliente->apellido }}</td>
+                    <td>{{ $cliente->telefono }}</td>
                     <td>{{ $cliente->email }}</td>
                     <td>{{ $cliente->tipo }}</td>
                     <td>

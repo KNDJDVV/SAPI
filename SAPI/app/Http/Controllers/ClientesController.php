@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Clientes;
 
 class ClientesController extends Controller
 {
@@ -20,7 +21,11 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        return view('clientes.create');
+        $clientes = DB::table('clientes')
+        ->orderBy('nombre')
+        ->get();
+        return view('clientes.new', ['clientes' => $clientes]);
+        
     }
 
     /**
@@ -28,11 +33,34 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('clientes')->insert($request->all());
+        $request->validate([
+            'nombre' => 'required|string',
+            'apellido' => 'required|string',
+            'telefono' => 'required|string',
+            'email' => 'required|email',
+            'tipo' => 'required|in:comprador,vendedor,arrendatario']);
+
+        // Crear un nuevo objeto Cliente con los datos recibidos
+        $cliente = new Clientes();
+        $cliente->nombre = $request->name;
+        $cliente->id = $request->code;
+        $cliente->apellido = $request->apellido;
+        $cliente->telefono = $request->telefono;
+        $cliente->email = $request->email;
+        $cliente->tipo = $request->codi;
+
+        // Guardar el cliente en la base de datos
+        $cliente->save();
+
+        // Redirigir a la ruta 'Clientes.index'
+        return redirect()->route('Clientes.index');
+    
+    }
+        //DB::table('clientes')->insert($request->all());
 
         
-        return redirect()->route('clientes.index');
-    }
+        //return redirect()->route('clientes.index');
+    
 
     /**
      * Display the specified resource.
