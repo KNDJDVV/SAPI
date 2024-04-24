@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('tipo');
             $table->string('tamaño');
             $table->integer('numero_habitaciones');
-            $table->decimal('precio');
+            $table->decimal('precio',10, 2);
             $table->string('estado');
             $table->timestamps();
         });

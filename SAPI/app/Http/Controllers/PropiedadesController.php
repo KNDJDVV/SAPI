@@ -38,10 +38,10 @@ class PropiedadesController extends Controller
             'estado' => 'required',
         ]);
 
-        // Crear una nueva instancia de Propiedad y guardarla en la base de datos
+        
         Propiedades::create($request->all());
 
-        // Redireccionar a la vista index
+       
         return redirect()->route('propiedades.index');
     }
 
@@ -60,7 +60,7 @@ class PropiedadesController extends Controller
     {
         $propiedad = Propiedades::findOrFail($id);
         
-        // Pasar la propiedad a la vista de edición
+        
         return view('propiedades.edit', compact('propiedad'));
 
     }
@@ -79,13 +79,13 @@ class PropiedadesController extends Controller
             'estado' => 'required',
         ]);
 
-        // Obtener la propiedad específica que se va a actualizar utilizando el modelo
+       
         $propiedad = Propiedades::findOrFail($id);
         
-        // Actualizar los datos de la propiedad con los datos del formulario
+       
         $propiedad->update($request->all());
 
-        // Redireccionar a la vista index
+        
         return redirect()->route('propiedades.index');
     }
 
@@ -94,10 +94,10 @@ class PropiedadesController extends Controller
      */
     public function destroy(string $id)
     {
-       // Obtener la propiedad específica que se va a eliminar utilizando el modelo y eliminarla
+       
        Propiedades::findOrFail($id)->delete();
         
-       // Redireccionar a la vista index
+      
        return redirect()->route('propiedades.index');
 
     }
