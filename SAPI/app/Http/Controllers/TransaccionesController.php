@@ -11,8 +11,13 @@ class TransaccionesController extends Controller
      */
     public function index()
     {
-        $transacciones = DB::table('transacciones')->get();
-        return view('transacciones.index', compact('transacciones'));
+        $transaccion = DB::table('transacciones')
+    ->join('clientes', 'transacciones.id', '=', 'clientes.id')
+    ->join('propiedades', 'transacciones.id', '=', 'propiedades.id')
+    ->select('transacciones.*', 'clientes.nombre', 'propiedades.direccion')
+    ->get();
+        
+        return view('Transacciones.index',['transacciones' => $transaccion]);
     }
 
     /**
