@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cliente_id');
             $table->string('tipo_transaccion');
             $table->date('fecha_transaccion');
-            $table->decimal('monto_transaccion');
+            $table->decimal('monto_transaccion',10,2);
             $table->timestamps();
 
             $table->foreign('propiedad_id')->references('id')->on('propiedades')->onDelete('cascade');

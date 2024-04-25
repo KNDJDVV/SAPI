@@ -15,3 +15,5 @@ Route::get('/Clientes/create', [ClientesController::class, 'create'])->name('Cli
 
 
 Route::get('/Transacciones',[TransaccionesController::class, 'index'])->name('Transacciones.index');
+Route::post('/Transacciones',[TransaccionesController::class, 'store'])->name('Transacciones.store');
+Route::get('/Transacciones/create', [TransaccionesController::class, 'create'])->name('Transacciones.create');
