@@ -19,3 +19,4 @@ Route::post('/Transacciones',[TransaccionesController::class, 'store'])->name('T
 Route::get('/Transacciones/create', [TransaccionesController::class, 'create'])->name('Transacciones.create');
 Route::put('/Transacciones/{transaccion}',[TransaccionesController::class, 'update'])->name('Transacciones.update');
 Route::get('/Transacciones/{transaccion}/edit',[TransaccionesController::class, 'edit'])->name('Transacciones.edit');
+Route::delete('/Transacciones/{transaccion}',[TransaccionesController::class, 'destroy'])->name('Transacciones.destroy');

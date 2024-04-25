@@ -53,6 +53,12 @@
                   
                     <a href="{{route('Transacciones.edit',['transaccion'=>$transaccion->id]) }}"
                       class="btn btn-info">Editar</a></li>
+                      <form action="{{ route('Transacciones.destroy',['transaccion' =>$transaccion->id]) }}";
+                      method='POST' style="display: inline-block">
+                      @method('delete')
+                      @csrf
+                      <input class="btn btn-danger" type="submit" value="delete">
+</form>
 </form>
                       
                       

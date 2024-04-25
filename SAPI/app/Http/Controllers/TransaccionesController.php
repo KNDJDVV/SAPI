@@ -102,6 +102,6 @@ class TransaccionesController extends Controller
     public function destroy(string $id)
     {
         DB::table('transacciones')->where('id', $id)->delete();
-        return redirect()->route('transacciones.index');
+        return redirect()->route('Transacciones.index');
     }
 }
