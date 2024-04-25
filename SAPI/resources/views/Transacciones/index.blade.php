@@ -51,7 +51,8 @@
                     <td>{{ $transaccion->monto_transaccion }}</td>
                     <td>
                   
-                
+                    <a href="{{route('Transacciones.edit',['transaccion'=>$transaccion->id]) }}"
+                      class="btn btn-info">Editar</a></li>
 </form>
                       
                       
