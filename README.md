@@ -1,4 +1,6 @@
-![descargar (1)](https://github.com/KNDJDVV/SAPI/assets/116231229/997eb622-7e0b-47f1-bb5e-2bc3586b30d4)
+<div style="text-align: center">
+    ![Your image title](https://github.com/KNDJDVV/SAPI/assets/116231229/f7bfdf76-fd8c-4d91-b658-48c9a87b1a84)
+</div>
 
 
 # Sistema de Administración de Propiedades Inmobiliarias (SAPI)
