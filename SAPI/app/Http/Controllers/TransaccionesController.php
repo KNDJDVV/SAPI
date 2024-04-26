@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Transacciones;
 
 class TransaccionesController extends Controller
 {
@@ -11,8 +12,13 @@ class TransaccionesController extends Controller
      */
     public function index()
     {
-        $transacciones = DB::table('transacciones')->get();
-        return view('transacciones.index', compact('transacciones'));
+        $transaccion = DB::table('transacciones')
+    ->join('clientes', 'transacciones.id', '=', 'clientes.id')
+    ->join('propiedades', 'transacciones.id', '=', 'propiedades.id')
+    ->select('transacciones.*', 'clientes.nombre', 'propiedades.direccion')
+    ->get();
+        
+        return view('Transacciones.index',['transacciones' => $transaccion]);
     }
 
     /**
@@ -20,7 +26,10 @@ class TransaccionesController extends Controller
      */
     public function create()
     {
-        return view('transacciones.create');
+        $transaccion = DB::table('transacciones')
+        ->orderBy('id')
+        ->get();
+        return view('Transacciones.new', ['Transacciones' => $transaccion]);
     }
 
     /**
@@ -28,10 +37,22 @@ class TransaccionesController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('transacciones')->insert($request->all());
+        $transaccion = new Transacciones();
+       
+        $transaccion->propiedad_id = $request->propiedad;
+        $transaccion->cliente_id = $request->cliente;
+        $transaccion->tipo_transaccion = $request->tipo;
+        $transaccion->fecha_transaccion = $request->fecha;
+        $transaccion->monto_transaccion = $request->monto;
+        $transaccion->save();
 
-        
-        return redirect()->route('transacciones.index');
+        $transaccion = DB::table('transacciones')
+        ->join('clientes', 'transacciones.id', '=', 'clientes.id')
+        ->join('propiedades', 'transacciones.id', '=', 'propiedades.id')
+        ->select('transacciones.*', 'clientes.nombre', 'propiedades.direccion')
+        ->get();
+            
+            return view('Transacciones.index',['transacciones' => $transaccion]);
     }
 
     /**
@@ -56,9 +77,23 @@ class TransaccionesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        DB::table('transacciones')->where('id', $id)->update($request->all());
+        $request->validate([
+            'id' => 'required',
+            'propiedad_id' => 'required',
+            'cliente_id' => 'required',
+            'tipo_transaccion' => 'required',
+            'fecha_transaccion' => 'required',
+            'monto_transaccion' => 'required',
+        ]);
+        $transaccion = Transacciones::findOrFail($id);
 
-        return redirect()->route('transacciones.index');
+
+        $transaccion->update($request->all());
+
+
+        
+
+        return redirect()->route('Transacciones.index');
     }
 
     /**
@@ -67,6 +102,6 @@ class TransaccionesController extends Controller
     public function destroy(string $id)
     {
         DB::table('transacciones')->where('id', $id)->delete();
-        return redirect()->route('transacciones.index');
+        return redirect()->route('Transacciones.index');
     }
 }
