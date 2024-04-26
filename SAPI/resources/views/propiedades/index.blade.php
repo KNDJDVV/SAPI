@@ -12,18 +12,29 @@
 
     <title>Listado de Propiedades</title>
 </head>
-
+  
 <body>
-    <div class="container">
-        <h1 class="mb-4">Listado de Propiedades</h1>
-        <div class="mb-3">
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Propiedades') }}
+        </h2>
+    </x-slot>
+    
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                <div class="mb-3">
             <a href="{{ route('propiedades.create') }}" class="btn btn-success btn-sm">Agregar Propiedad</a>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">ID</th>
+                        <thead>
+                            <tr>
+                            
+                            <th scope="col">ID</th>
                         <th scope="col">Dirección</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Tamaño</th>
@@ -31,10 +42,10 @@
                         <th scope="col">Precio</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($propiedades as $propiedad)
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($propiedades as $propiedad)
                         <tr>
                             <td>{{ $propiedad->id }}</td>
                             <td>{{ $propiedad->direccion }}</td>
@@ -44,27 +55,29 @@
                             <td>{{ $propiedad->precio }}</td>
                             <td>{{ $propiedad->estado }}</td>
                             <td>
-                                <a href="{{ route('propiedades.edit', ['propiedad' => $propiedad->id]) }}"
-                                    class="btn btn-info btn-sm">Editar</a>
+                    
+                            <a href="{{ route('propiedades.edit', ['propiedad' => $propiedad->id]) }}"
+                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                            Editar </a></li>
 
-                                <form action="{{ route('propiedades.destroy', ['propiedad' => $propiedad->id]) }}"
+
+                                            <form action="{{ route('propiedades.destroy', ['propiedad' => $propiedad->id]) }}"
                                     method="POST" style="display: inline-block">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('¿Estás seguro de que deseas eliminar esta propiedad? Esta acción no se puede deshacer.')">Eliminar</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                            <input
+                                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+                                                type="submit" value="Delete">
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-mrcSNrVJ4FdQl3elR5NvxPPKOVy3aDkz5e
-
+</x-app-layout>
 
 

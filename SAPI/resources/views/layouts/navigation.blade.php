@@ -22,6 +22,16 @@
                                   {{ __('Transacciones') }}
                     </x-nav-link>
                     </div>    
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.index')">
+                                  {{ __('Clientes') }}
+                    </x-nav-link>
+                    </div>    
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('propiedades.index')" :active="request()->routeIs('propiedades.index')">
+                                  {{ __('Propiedades') }}
+                    </x-nav-link>
+                    </div>    
 
                   
             
