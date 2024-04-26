@@ -27,7 +27,7 @@
   <body>
     <div class="container">
         <h1>Lista de Clientes</h1>
-        <a href="{{ route('Clientes.create')}}" class= "btn btn-sucess">Add</a>
+        <a href="{{ route('clientes.create')}}" class= "btn btn-sucess">Add</a>
         <table class="table">
             <thead>
                 <tr>
