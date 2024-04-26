@@ -16,7 +16,16 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-            </div>
+            
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('Transacciones.index')" :active="request()->routeIs('Transacciones.index')">
+                                  {{ __('Transacciones') }}
+                    </x-nav-link>
+                    </div>    
+
+                  
+            
+           
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

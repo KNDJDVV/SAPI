@@ -14,6 +14,7 @@
     <h1>Añadir Transaccion</h1>
     <form method="POST" action="{{ route('Transacciones.store') }}">
         @csrf
+        
   <div class="mb-3">
     <label for="id" class="form-label">Codigo</label>
     <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id" disabled="disabled">
